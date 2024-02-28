@@ -21,6 +21,7 @@ $('.btn').click(function() {
 });
 
 function nextSequence() {
+    userClickedPattern = []
     level += 1 
     let randomNumber = Math.floor(Math.random() * 4)
     let randomChosenColor = buttonColors[randomNumber]
@@ -38,9 +39,21 @@ function animatePress(currentColor) {
     setTimeout(() => { $(`.${currentColor}`).removeClass('pressed') }, 100)
 }
 function checkAnswer(currentLevel) {
-    if (userChosenColor[currentLevel] === gamePattern[currentLevel]) {console.log(success) }
+    if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) { console.log('success') }
+    else {
+        $('body').addClass('game-over')
+        setTimeout(() => { $('body').removeClass('game-over') }, 200)
+        $('h1').text('Game Over, press any key to restart')
+        console.log('fail')
+        startOver()
+    }
     if (userClickedPattern.length === gamePattern.length)
     {
         setTimeout(function () {nextSequence();}, 1000)
-    } else {console.log(fail)}
+    } 
+}
+function startOver() {
+    level = 0
+    gamePattern = []
+    gameStart = false
 }
