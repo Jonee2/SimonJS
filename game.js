@@ -47,7 +47,7 @@ function checkAnswer(currentLevel) {
         console.log('fail')
         startOver()
     }
-    if (userClickedPattern.length === gamePattern.length)
+if (userClickedPattern.length === gamePattern.length)
     {
         setTimeout(function () {nextSequence();}, 1000)
     } 
